@@ -10,6 +10,8 @@ createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<QuizzesIndex />} />
+        <Route path="/futebol" element={<QuizzesIndex />} />
+        <Route path="/basquete" element={<QuizzesIndex />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
