@@ -1,0 +1,411 @@
+[
+  {
+    "id": "019dc4e6-4a02-7b10-9a1f-31837d745273",
+    "name": "Futebol",
+    "description": "Quiz sobre futebol",
+    "color": "#0d47a1",
+    "coverImage": "https://images.unsplash.com/photo-1518091043644-c1d4457512c6",
+    "questions": [
+      {
+        "question": "Quantos jogadores em campo?",
+        "options": ["7", "9", "11", "13"],
+        "correct": 2
+      },
+      {
+        "question": "Quem ganhou a Copa 2002?",
+        "options": ["Alemanha", "Brasil", "França", "Argentina"],
+        "correct": 1
+      },
+      {
+        "question": "Rei do Futebol?",
+        "options": ["Messi", "CR7", "Pelé", "Neymar"],
+        "correct": 2
+      },
+      {
+        "question": "Duração do jogo?",
+        "options": ["60", "70", "80", "90"],
+        "correct": 3
+      },
+      {
+        "question": "País com mais Copas?",
+        "options": ["Alemanha", "Brasil", "Itália", "Argentina"],
+        "correct": 1
+      }
+    ]
+  },
+  {
+    "id": "019dc4e6-4a02-7121-9dc3-16256bf54853",
+    "name": "Basquete",
+    "description": "Quiz sobre basquete",
+    "color": "#f5f5f5",
+    "textColor": "#111",
+    "coverImage": "https://images.unsplash.com/photo-1546519638-68e109498ffc",
+    "questions": [
+      {
+        "question": "Jogadores em quadra?",
+        "options": ["4", "5", "6", "7"],
+        "correct": 1
+      },
+      {
+        "question": "GOAT?",
+        "options": ["LeBron", "Curry", "Jordan", "Durant"],
+        "correct": 2
+      },
+      {
+        "question": "Pontos de 3?",
+        "options": ["1", "2", "3", "4"],
+        "correct": 2
+      },
+      {
+        "question": "Liga principal?",
+        "options": ["NFL", "NBA", "FIFA", "UFC"],
+        "correct": 1
+      },
+      {
+        "question": "Duração jogo?",
+        "options": ["40", "48", "60", "30"],
+        "correct": 1
+      }
+    ]
+  },
+  {
+    "id": "019dc4e6-4a02-7a01-8b11-1f2a3c4d5e60",
+    "name": "Vôlei",
+    "description": "Quiz sobre vôlei",
+    "color": "#ff6f00",
+    "coverImage": "https://images.unsplash.com/photo-1592656094267-764a45160876",
+    "questions": [
+      {
+        "question": "Jogadores por time?",
+        "options": ["5", "6", "7", "8"],
+        "correct": 1
+      },
+      {
+        "question": "Pontos para vencer um set?",
+        "options": ["15", "20", "25", "30"],
+        "correct": 2
+      },
+      {
+        "question": "Quantos sets para vencer?",
+        "options": ["2", "3", "4", "5"],
+        "correct": 1
+      },
+      {
+        "question": "Toques permitidos por jogada?",
+        "options": ["2", "3", "4", "5"],
+        "correct": 1
+      },
+      {
+        "question": "País bicampeão olímpico masculino recente?",
+        "options": ["Brasil", "EUA", "Rússia", "França"],
+        "correct": 3
+      }
+    ]
+  },
+  {
+    "id": "019dc4e6-4a02-7a02-8b12-2f3a4c5d6e71",
+    "name": "Tênis",
+    "description": "Quiz sobre tênis",
+    "color": "#2e7d32",
+    "coverImage": "https://images.unsplash.com/photo-1554068865-24cecd4e34b8",
+    "questions": [
+      {
+        "question": "Quantos Grand Slams existem?",
+        "options": ["2", "3", "4", "5"],
+        "correct": 2
+      },
+      {
+        "question": "Torneio na grama?",
+        "options": ["Roland Garros", "US Open", "Wimbledon", "Australian Open"],
+        "correct": 2
+      },
+      {
+        "question": "Quem tem mais Grand Slams masculinos?",
+        "options": ["Federer", "Nadal", "Djokovic", "Sampras"],
+        "correct": 2
+      },
+      {
+        "question": "Pontuação após 0?",
+        "options": ["5", "10", "15", "20"],
+        "correct": 2
+      },
+      {
+        "question": "Empate em 40-40?",
+        "options": ["Deuce", "Ace", "Let", "Break"],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "019dc4e6-4a02-7a03-8b13-3f4a5c6d7e82",
+    "name": "História",
+    "description": "Quiz de história mundial",
+    "color": "#4e342e",
+    "coverImage": "https://images.unsplash.com/photo-1461360370896-922624d12aa1",
+    "questions": [
+      {
+        "question": "Ano da Revolução Francesa?",
+        "options": ["1689", "1789", "1812", "1848"],
+        "correct": 1
+      },
+      {
+        "question": "Quem descobriu o Brasil?",
+        "options": ["Colombo", "Cabral", "Vespúcio", "Magalhães"],
+        "correct": 1
+      },
+      {
+        "question": "Fim da 2ª Guerra Mundial?",
+        "options": ["1943", "1944", "1945", "1946"],
+        "correct": 2
+      },
+      {
+        "question": "Primeiro presidente dos EUA?",
+        "options": ["Lincoln", "Jefferson", "Washington", "Adams"],
+        "correct": 2
+      },
+      {
+        "question": "Queda do Muro de Berlim?",
+        "options": ["1987", "1989", "1991", "1993"],
+        "correct": 1
+      }
+    ]
+  },
+  {
+    "id": "019dc4e6-4a02-7a04-8b14-4f5a6c7d8e93",
+    "name": "Geografia",
+    "description": "Quiz de geografia",
+    "color": "#1565c0",
+    "coverImage": "https://images.unsplash.com/photo-1524661135-423995f22d0b",
+    "questions": [
+      {
+        "question": "Maior país do mundo?",
+        "options": ["China", "EUA", "Canadá", "Rússia"],
+        "correct": 3
+      },
+      {
+        "question": "Capital da Austrália?",
+        "options": ["Sydney", "Melbourne", "Canberra", "Perth"],
+        "correct": 2
+      },
+      {
+        "question": "Maior deserto do mundo?",
+        "options": ["Saara", "Antártico", "Gobi", "Atacama"],
+        "correct": 1
+      },
+      {
+        "question": "Rio mais extenso?",
+        "options": ["Nilo", "Amazonas", "Yangtzé", "Mississippi"],
+        "correct": 1
+      },
+      {
+        "question": "Continente mais populoso?",
+        "options": ["África", "Europa", "Ásia", "América"],
+        "correct": 2
+      }
+    ]
+  },
+  {
+    "id": "019dc4e6-4a02-7a05-8b15-5f6a7c8d9ea4",
+    "name": "Ciência",
+    "description": "Quiz de ciências gerais",
+    "color": "#00838f",
+    "coverImage": "https://images.unsplash.com/photo-1532094349884-543bc11b234d",
+    "questions": [
+      {
+        "question": "Símbolo químico do ouro?",
+        "options": ["Au", "Ag", "Or", "Go"],
+        "correct": 0
+      },
+      {
+        "question": "Planeta mais próximo do Sol?",
+        "options": ["Vênus", "Terra", "Mercúrio", "Marte"],
+        "correct": 2
+      },
+      {
+        "question": "Velocidade da luz aprox.?",
+        "options": ["150k km/s", "300k km/s", "500k km/s", "1M km/s"],
+        "correct": 1
+      },
+      {
+        "question": "Quem propôs a relatividade?",
+        "options": ["Newton", "Einstein", "Tesla", "Hawking"],
+        "correct": 1
+      },
+      {
+        "question": "Órgão que bombeia sangue?",
+        "options": ["Pulmão", "Fígado", "Coração", "Rim"],
+        "correct": 2
+      }
+    ]
+  },
+  {
+    "id": "019dc4e6-4a02-7a06-8b16-6f7a8c9daeb5",
+    "name": "Cinema",
+    "description": "Quiz sobre filmes",
+    "color": "#212121",
+    "coverImage": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba",
+    "questions": [
+      {
+        "question": "Diretor de Pulp Fiction?",
+        "options": ["Scorsese", "Tarantino", "Spielberg", "Nolan"],
+        "correct": 1
+      },
+      {
+        "question": "Filme com maior bilheteria?",
+        "options": ["Avatar", "Titanic", "Vingadores Ultimato", "Star Wars"],
+        "correct": 0
+      },
+      {
+        "question": "Quem dirigiu Interestelar?",
+        "options": ["Cameron", "Nolan", "Villeneuve", "Fincher"],
+        "correct": 1
+      },
+      {
+        "question": "Personagem principal de Matrix?",
+        "options": ["Neo", "Morpheus", "Trinity", "Smith"],
+        "correct": 0
+      },
+      {
+        "question": "Estúdio do Mickey Mouse?",
+        "options": ["Pixar", "Disney", "Warner", "Universal"],
+        "correct": 1
+      }
+    ]
+  },
+  {
+    "id": "019dc4e6-4a02-7a07-8b17-7f8a9cadbec6",
+    "name": "Música",
+    "description": "Quiz musical",
+    "color": "#6a1b9a",
+    "coverImage": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4",
+    "questions": [
+      {
+        "question": "Banda de Bohemian Rhapsody?",
+        "options": ["Beatles", "Queen", "Led Zeppelin", "Pink Floyd"],
+        "correct": 1
+      },
+      {
+        "question": "Rei do Pop?",
+        "options": ["Elvis", "Prince", "Michael Jackson", "Bowie"],
+        "correct": 2
+      },
+      {
+        "question": "Quantas cordas um violão tem?",
+        "options": ["4", "5", "6", "7"],
+        "correct": 2
+      },
+      {
+        "question": "Origem do samba?",
+        "options": ["Cuba", "Brasil", "Argentina", "Jamaica"],
+        "correct": 1
+      },
+      {
+        "question": "Cantora de Rolling in the Deep?",
+        "options": ["Beyoncé", "Adele", "Rihanna", "Sia"],
+        "correct": 1
+      }
+    ]
+  },
+  {
+    "id": "019dc4e6-4a02-7a08-8b18-8f9aacbedcd7",
+    "name": "Tecnologia",
+    "description": "Quiz de tecnologia",
+    "color": "#283593",
+    "coverImage": "https://images.unsplash.com/photo-1518770660439-4636190af475",
+    "questions": [
+      {
+        "question": "Criador do Linux?",
+        "options": ["Gates", "Torvalds", "Jobs", "Wozniak"],
+        "correct": 1
+      },
+      {
+        "question": "O que significa CPU?",
+        "options": ["Central Process Unit", "Central Processing Unit", "Computer Personal Unit", "Control Processing Unit"],
+        "correct": 1
+      },
+      {
+        "question": "Linguagem do navegador?",
+        "options": ["Python", "Java", "JavaScript", "C#"],
+        "correct": 2
+      },
+      {
+        "question": "Empresa do iPhone?",
+        "options": ["Samsung", "Apple", "Google", "Microsoft"],
+        "correct": 1
+      },
+      {
+        "question": "HTML é uma linguagem de?",
+        "options": ["Programação", "Marcação", "Estilo", "Banco de dados"],
+        "correct": 1
+      }
+    ]
+  },
+  {
+    "id": "019dc4e6-4a02-7a09-8b19-9faabcdedde8",
+    "name": "Literatura",
+    "description": "Quiz literário",
+    "color": "#5d4037",
+    "coverImage": "https://images.unsplash.com/photo-1512820790803-83ca734da794",
+    "questions": [
+      {
+        "question": "Autor de Dom Casmurro?",
+        "options": ["Alencar", "Machado de Assis", "Drummond", "Jorge Amado"],
+        "correct": 1
+      },
+      {
+        "question": "Quem escreveu Hamlet?",
+        "options": ["Dickens", "Shakespeare", "Tolstói", "Hugo"],
+        "correct": 1
+      },
+      {
+        "question": "Autor de Cem Anos de Solidão?",
+        "options": ["Borges", "Cortázar", "Garcia Marquez", "Vargas Llosa"],
+        "correct": 2
+      },
+      {
+        "question": "Personagem criado por Cervantes?",
+        "options": ["Don Quixote", "Fausto", "Odisseu", "Romeu"],
+        "correct": 0
+      },
+      {
+        "question": "Autor de O Pequeno Príncipe?",
+        "options": ["Saint-Exupéry", "Camus", "Sartre", "Verne"],
+        "correct": 0
+      }
+    ]
+  },
+  {
+    "id": "019dc4e6-4a02-7a0a-8b1a-afbacdedee09",
+    "name": "Animais",
+    "description": "Quiz sobre animais",
+    "color": "#33691e",
+    "coverImage": "https://images.unsplash.com/photo-1474511320723-9a56873867b5",
+    "questions": [
+      {
+        "question": "Maior mamífero do mundo?",
+        "options": ["Elefante", "Baleia azul", "Girafa", "Hipopótamo"],
+        "correct": 1
+      },
+      {
+        "question": "Animal mais rápido em terra?",
+        "options": ["Leão", "Cavalo", "Guepardo", "Antílope"],
+        "correct": 2
+      },
+      {
+        "question": "Quantas patas tem uma aranha?",
+        "options": ["6", "8", "10", "12"],
+        "correct": 1
+      },
+      {
+        "question": "Maior felino selvagem?",
+        "options": ["Leão", "Tigre", "Onça", "Leopardo"],
+        "correct": 1
+      },
+      {
+        "question": "Animal símbolo da Austrália?",
+        "options": ["Coala", "Canguru", "Wombat", "Emu"],
+        "correct": 1
+      }
+    ]
+  }
+]
