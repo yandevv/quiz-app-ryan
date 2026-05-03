@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import quizzes from "../data/quizzes.json";
 
 function Quiz() {
+  const navigate = useNavigate();
+
   const { quizId } = useParams();
 
   const quiz = quizzes.find((q) => q.id === quizId);
@@ -69,6 +71,12 @@ function Quiz() {
             <p className="text-lg">
               Você acertou {score} de {quiz.questions.length}
             </p>
+            <button
+              onClick={() => navigate(-1)}
+              className="bg-slate-700 hover:bg-slate-600 transition p-3 rounded-lg"
+            >
+              Voltar
+            </button>
           </div>
         )}
 
