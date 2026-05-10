@@ -4,41 +4,48 @@ import quizzes from "../data/quizzes.json";
 
 function QuizzesIndex() {
   return (
-    <div className="w-full min-h-screen bg-slate-800 text-white py-6 px-10">
-      <h1 className="text-center font-bold text-2xl mb-8">Quizzes</h1>
+    <div className="min-h-screen bg-slate-900 text-white px-12 py-10">
 
-      <div className="grid grid-cols-3 gap-8">
+      <h1 className="text-5xl font-bold text-center mb-14">
+        Quizzes
+      </h1>
+
+      <div className="grid grid-cols-4 gap-8">
         {quizzes.map((quiz) => (
           <div
             key={quiz.id}
-            className="rounded-xl overflow-hidden shadow-lg relative"
-            style={{ backgroundColor: quiz.color }}
+            className="bg-slate-800 rounded-2xl overflow-hidden shadow-xl hover:scale-105 transition duration-300 flex flex-col"
           >
             <img
               src={quiz.coverImage}
-              alt={"Cover do Quiz " + quiz.name}
-              className="w-full h-40 object-cover"
+              alt={quiz.name}
+              className="w-full h-36 object-cover"
             />
 
-            <div className="p-4">
+            <div className="p-4 flex flex-col flex-1">
+
               <h2
-                className="font-bold text-xl mb-2"
+                className="text-xl font-bold mb-2"
                 style={{ color: quiz.textColor || "#fff" }}
               >
                 {quiz.name}
               </h2>
 
-              <p style={{ color: quiz.textColor || "#fff" }}>
+              <p
+                className="text-sm text-gray-300 mb-5"
+                style={{ color: quiz.textColor || "#d1d5db" }}
+              >
                 {quiz.description}
               </p>
-            </div>
 
-            <Link
-              to={`/quizzes/${quiz.id}`}
-              className="bg-slate-900 text-white px-4 py-2 rounded-lg absolute bottom-4 left-1/2 -translate-x-1/2"
-            >
-              Começar
-            </Link>
+              <Link
+                to={`/quizzes/${quiz.id}`}
+                className="mt-auto bg-blue-600 hover:bg-blue-700 transition text-center py-2 rounded-xl font-semibold"
+              >
+                Começar
+              </Link>
+
+            </div>
           </div>
         ))}
       </div>
