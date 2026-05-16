@@ -37,7 +37,7 @@
     "id": "019dc4e6-4a02-7121-9dc3-16256bf54853",
     "name": "Basquete",
     "description": "Quiz sobre basquete",
-    "color": "#f5f5f5",
+    "color": "##ff6f00",
     "textColor": "#111",
     "coverImage": "https://images.unsplash.com/photo-1546519638-68e109498ffc",
     "questions": [

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
 import quizzes from "../data/quizzes.json";
 
@@ -10,10 +10,21 @@ function Quiz() {
   const quiz = quizzes.find((q) => q.id === quizId);
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
+
   const [score, setScore] = useState(0);
+
   const [finished, setFinished] = useState(false);
 
   const [answers, setAnswers] = useState([]);
+
+  // tempo total do quiz
+  const [totalTime, setTotalTime] = useState(0);
+
+  // tempo restante da questão
+  const [timeLeft, setTimeLeft] = useState(120);
+
+  // tempo gasto na questão atual
+  const [questionTime, setQuestionTime] = useState(0);
 
   if (!quiz) {
     return (
@@ -25,6 +36,68 @@ function Quiz() {
 
   const question = quiz.questions[currentQuestion];
 
+  // cronômetro
+  useEffect(() => {
+    if (finished) return;
+
+    const interval = setInterval(() => {
+      setTimeLeft((prev) => prev - 1);
+
+      setTotalTime((prev) => prev + 1);
+
+      setQuestionTime((prev) => prev + 1);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [currentQuestion, finished]);
+
+  // tempo expirado
+  useEffect(() => {
+    if (timeLeft <= 0 && !finished) {
+      handleTimeout();
+    }
+  }, [timeLeft]);
+
+  function formatTime(seconds) {
+    const min = Math.floor(seconds / 60);
+
+    const sec = seconds % 60;
+
+    return `${min}:${sec.toString().padStart(2, "0")}`;
+  }
+
+  function nextQuestion() {
+    const next = currentQuestion + 1;
+
+    if (next < quiz.questions.length) {
+      setCurrentQuestion(next);
+
+      setTimeLeft(120);
+
+      setQuestionTime(0);
+    } else {
+      setFinished(true);
+    }
+  }
+
+  // caso o tempo acabe
+  function handleTimeout() {
+    setAnswers((prev) => [
+      ...prev,
+      {
+        question: question.question,
+        options: question.options,
+        selected: null,
+        correct: question.correct,
+        expired: true,
+        timeSpent: questionTime,
+      },
+    ]);
+
+    nextQuestion();
+  }
+
+  // resposta normal
   function handleAnswer(index) {
     setAnswers((prev) => [
       ...prev,
@@ -33,6 +106,8 @@ function Quiz() {
         options: question.options,
         selected: index,
         correct: question.correct,
+        expired: false,
+        timeSpent: questionTime,
       },
     ]);
 
@@ -40,13 +115,7 @@ function Quiz() {
       setScore((prev) => prev + 1);
     }
 
-    const next = currentQuestion + 1;
-
-    if (next < quiz.questions.length) {
-      setCurrentQuestion(next);
-    } else {
-      setFinished(true);
-    }
+    nextQuestion();
   }
 
   const percentage = Math.round(
@@ -64,10 +133,34 @@ function Quiz() {
 
         {!finished ? (
           <>
-            {/* barra progresso */}
+            {/* progresso */}
             <div className="mb-6">
 
+              <div className="flex items-center justify-between mb-3">
+
+                <p className="text-gray-400">
+                  Pergunta {currentQuestion + 1} de{" "}
+                  {quiz.questions.length}
+                </p>
+
+                <div
+                  className={`
+                    px-4 py-2 rounded-xl font-bold
+
+                    ${
+                      timeLeft <= 15
+                        ? "bg-red-500 text-white"
+                        : "bg-slate-700 text-white"
+                    }
+                  `}
+                >
+                  ⏱ {formatTime(timeLeft)}
+                </div>
+
+              </div>
+
               <div className="w-full bg-slate-700 h-3 rounded-full overflow-hidden">
+
                 <div
                   className="bg-blue-500 h-full transition-all duration-300"
                   style={{
@@ -78,12 +171,8 @@ function Quiz() {
                     }%`,
                   }}
                 />
-              </div>
 
-              <p className="text-gray-400 mt-2">
-                Pergunta {currentQuestion + 1} de{" "}
-                {quiz.questions.length}
-              </p>
+              </div>
 
             </div>
 
@@ -124,7 +213,7 @@ function Quiz() {
                 Resultado Final 🎉
               </h2>
 
-              {/* círculo porcentagem */}
+              {/* círculo */}
               <div className="flex justify-center mb-8">
 
                 <div
@@ -151,13 +240,21 @@ function Quiz() {
 
               </div>
 
-              <p className="text-2xl text-blue-400 font-semibold">
+              <p className="text-2xl text-blue-400 font-semibold mb-3">
                 {score} / {quiz.questions.length} acertos
+              </p>
+
+              {/* tempo total */}
+              <p className="text-lg text-gray-300">
+                Tempo total:{" "}
+                <span className="font-bold text-yellow-400">
+                  {formatTime(totalTime)}
+                </span>
               </p>
 
             </div>
 
-            {/* feedback respostas */}
+            {/* feedback */}
             <div className="flex flex-col gap-6">
 
               {answers.map((answer, questionIndex) => (
@@ -166,10 +263,26 @@ function Quiz() {
                   className="bg-slate-700 rounded-2xl p-5"
                 >
 
-                  <h3 className="text-xl font-bold mb-5">
-                    {questionIndex + 1}. {answer.question}
-                  </h3>
+                  <div className="flex items-center justify-between mb-5">
 
+                    <h3 className="text-xl font-bold">
+                      {questionIndex + 1}. {answer.question}
+                    </h3>
+
+                    <div className="bg-slate-800 px-3 py-2 rounded-xl text-sm text-yellow-400 font-bold">
+                      ⏱ {formatTime(answer.timeSpent)}
+                    </div>
+
+                  </div>
+
+                  {/* tempo expirado */}
+                  {answer.expired && (
+                    <div className="mb-4 text-red-400 font-bold">
+                      Tempo expirado
+                    </div>
+                  )}
+
+                  {/* alternativas */}
                   <div className="flex flex-col gap-3">
 
                     {answer.options.map((option, optionIndex) => {
@@ -180,6 +293,37 @@ function Quiz() {
                       const isSelected =
                         optionIndex === answer.selected;
 
+                      // TEMPO EXPIRADO
+                      if (answer.expired) {
+                        return (
+                          <div
+                            key={optionIndex}
+                            className={`
+                              p-4 rounded-xl border-2
+
+                              ${
+                                isCorrect
+                                  ? "border-green-500 bg-green-500/10"
+                                  : "border-slate-600"
+                              }
+                            `}
+                          >
+                            <div className="flex items-center justify-between">
+
+                              <span>{option}</span>
+
+                              {isCorrect && (
+                                <span className="text-green-400 font-bold">
+                                  Correta
+                                </span>
+                              )}
+
+                            </div>
+                          </div>
+                        );
+                      }
+
+                      // RESPOSTAS NORMAIS
                       return (
                         <div
                           key={optionIndex}
@@ -189,18 +333,12 @@ function Quiz() {
                             ${
                               isCorrect
                                 ? "border-green-500 bg-green-500/10"
-                                : ""
+                                : "border-slate-600"
                             }
 
                             ${
                               isSelected && !isCorrect
                                 ? "border-red-500 bg-red-500/10"
-                                : ""
-                            }
-
-                            ${
-                              !isCorrect && !isSelected
-                                ? "border-slate-600"
                                 : ""
                             }
                           `}
@@ -232,7 +370,7 @@ function Quiz() {
 
             </div>
 
-            {/* botão voltar */}
+            {/* botão */}
             <div className="flex justify-center mt-10">
 
               <button
