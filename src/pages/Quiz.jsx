@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
 import quizzes from "../data/quizzes.json";
 
+const questionTime = 120;
+
 function Quiz() {
   const { quizId } = useParams();
 
@@ -11,20 +13,67 @@ function Quiz() {
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
 
+  const question = quiz.questions[currentQuestion];
+
   const [score, setScore] = useState(0);
 
   const [finished, setFinished] = useState(false);
 
   const [answers, setAnswers] = useState([]);
 
-  // tempo total do quiz
-  const [totalTime, setTotalTime] = useState(0);
-
   // tempo restante da questão
-  const [timeLeft, setTimeLeft] = useState(120);
+  const [timeLeft, setTimeLeft] = useState(questionTime);
 
-  // tempo gasto na questão atual
-  const [questionTime, setQuestionTime] = useState(0);
+  const [questionInitDate, setQuestionInitDate] = useState(new Date());
+
+  // cronômetro
+  useEffect(() => {
+    if (finished) return;
+
+    const interval = setInterval(() => {
+      setTimeLeft(() => questionTime - Math.floor((new Date().getTime() - questionInitDate.getTime()) / 1000));
+    }, 500);
+
+    return () => clearInterval(interval);
+  }, [currentQuestion, finished, questionInitDate]);
+
+  function nextQuestion() {
+    const next = currentQuestion + 1;
+
+    if (next < quiz.questions.length) {
+      setCurrentQuestion(next);
+
+      setTimeLeft(questionTime);
+      setQuestionInitDate(new Date());
+    } else {
+      setFinished(true);
+    }
+  }
+
+  // tempo expirado
+  useEffect(() => {
+    // caso o tempo acabe
+    function handleTimeout() {
+      setAnswers((prev) => [
+        ...prev,
+        {
+          question: question.question,
+          options: question.options,
+          selected: null,
+          correct: question.correct,
+          expired: true,
+          initialQuestionDate: questionInitDate,
+          finishedQuestionDate: new Date(),
+        },
+      ]);
+
+      nextQuestion();
+    }
+
+    if (timeLeft <= 0 && !finished) {
+      handleTimeout();
+    }
+  }, [timeLeft]);
 
   if (!quiz) {
     return (
@@ -34,67 +83,18 @@ function Quiz() {
     );
   }
 
-  const question = quiz.questions[currentQuestion];
+  function formatTime(milliseconds, formatMilisseconds = false) {
+    const seconds = Math.floor(milliseconds / 1000);
 
-  // cronômetro
-  useEffect(() => {
-    if (finished) return;
-
-    const interval = setInterval(() => {
-      setTimeLeft((prev) => prev - 1);
-
-      setTotalTime((prev) => prev + 1);
-
-      setQuestionTime((prev) => prev + 1);
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [currentQuestion, finished]);
-
-  // tempo expirado
-  useEffect(() => {
-    if (timeLeft <= 0 && !finished) {
-      handleTimeout();
-    }
-  }, [timeLeft]);
-
-  function formatTime(seconds) {
     const min = Math.floor(seconds / 60);
+    const sec = Math.floor(seconds % 60);
 
-    const sec = seconds % 60;
+    if (formatMilisseconds) {
+      const onlyMiliseconds = milliseconds % 1000;
+      return `${min}:${sec.toString().padStart(2, "0")}:${onlyMiliseconds.toString().padStart(3, "0")}`;
+    }
 
     return `${min}:${sec.toString().padStart(2, "0")}`;
-  }
-
-  function nextQuestion() {
-    const next = currentQuestion + 1;
-
-    if (next < quiz.questions.length) {
-      setCurrentQuestion(next);
-
-      setTimeLeft(120);
-
-      setQuestionTime(0);
-    } else {
-      setFinished(true);
-    }
-  }
-
-  // caso o tempo acabe
-  function handleTimeout() {
-    setAnswers((prev) => [
-      ...prev,
-      {
-        question: question.question,
-        options: question.options,
-        selected: null,
-        correct: question.correct,
-        expired: true,
-        timeSpent: questionTime,
-      },
-    ]);
-
-    nextQuestion();
   }
 
   // resposta normal
@@ -107,7 +107,8 @@ function Quiz() {
         selected: index,
         correct: question.correct,
         expired: false,
-        timeSpent: questionTime,
+        initialQuestionDate: questionInitDate,
+        finishedQuestionDate: new Date(),
       },
     ]);
 
@@ -121,6 +122,12 @@ function Quiz() {
   const percentage = Math.round(
     (score / quiz.questions.length) * 100
   );
+
+  function calcQuestionsTotalTime(answers) {
+    return answers.reduce((total, answer) => {
+      return total + (answer.finishedQuestionDate.getTime() - answer.initialQuestionDate.getTime());
+    }, 0);
+  }
 
   return (
     <div className="min-h-screen bg-slate-900 text-white flex justify-center py-10 px-6">
@@ -154,7 +161,7 @@ function Quiz() {
                     }
                   `}
                 >
-                  ⏱ {formatTime(timeLeft)}
+                  ⏱ {formatTime(timeLeft * 1000)}
                 </div>
 
               </div>
@@ -248,7 +255,7 @@ function Quiz() {
               <p className="text-lg text-gray-300">
                 Tempo total:{" "}
                 <span className="font-bold text-yellow-400">
-                  {formatTime(totalTime)}
+                  {formatTime(calcQuestionsTotalTime(answers), true)}
                 </span>
               </p>
 
@@ -270,7 +277,7 @@ function Quiz() {
                     </h3>
 
                     <div className="bg-slate-800 px-3 py-2 rounded-xl text-sm text-yellow-400 font-bold">
-                      ⏱ {formatTime(answer.timeSpent)}
+                      ⏱ {formatTime((answer.finishedQuestionDate.getTime() - answer.initialQuestionDate.getTime()), true)}
                     </div>
 
                   </div>
