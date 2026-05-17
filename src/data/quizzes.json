@@ -38,7 +38,6 @@
     "name": "Basquete",
     "description": "Quiz sobre basquete",
     "color": "##ff6f00",
-    "textColor": "#111",
     "coverImage": "https://images.unsplash.com/photo-1546519638-68e109498ffc",
     "questions": [
       {
